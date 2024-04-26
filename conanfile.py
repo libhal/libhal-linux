@@ -21,13 +21,13 @@ import os
 required_conan_version = ">=2.0.14"
 
 
-class libhal___platform___conan(ConanFile):
-    name = "libhal-__platform__"
+class libhal_linux_conan(ConanFile):
+    name = "libhal-linux"
     license = "Apache-2.0"
-    homepage = "https://libhal.github.io/libhal-__platform__"
-    description = ("A collection of drivers and libraries for the __platform__ "
+    homepage = "https://libhal.github.io/libhal-linux"
+    description = ("A collection of drivers and libraries for the linux "
                    "series microcontrollers.")
-    topics = ("microcontroller", "__platform__",)
+    topics = ("microcontroller", "linux",)
     settings = "compiler", "build_type", "os", "arch"
 
     python_requires = "libhal-bootstrap/[^1.0.0]"
@@ -54,7 +54,7 @@ class libhal___platform___conan(ConanFile):
         platform = str(self.options.platform)
         self.cpp_info.exelinkflags = [
             "-L" + os.path.join(self.package_folder, "linker_scripts"),
-            "-T" + os.path.join("libhal-__platform__", platform + ".ld"),
+            "-T" + os.path.join("libhal-linux", platform + ".ld"),
         ]
 
     def requirements(self):
@@ -62,8 +62,8 @@ class libhal___platform___conan(ConanFile):
         self.requires("libhal-armcortex/[^3.0.2]")
 
     def package_info(self):
-        self.cpp_info.set_property("cmake_target_name", "libhal::__platform__")
-        self.cpp_info.libs = ["libhal-__platform__"]
+        self.cpp_info.set_property("cmake_target_name", "libhal::linux")
+        self.cpp_info.libs = ["libhal-linux"]
 
         if self.settings.os == "baremetal" and self._use_linker_script:
             self.add_linker_scripts_to_link_flags()
@@ -71,7 +71,7 @@ class libhal___platform___conan(ConanFile):
             self.buildenv_info.define("LIBHAL_PLATFORM",
                                       str(self.options.platform))
             self.buildenv_info.define("LIBHAL_PLATFORM_LIBRARY",
-                                      "__platform__")
+                                      "linux")
 
     def package_id(self):
         if self.info.options.get_safe("platform"):
