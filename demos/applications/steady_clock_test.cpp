@@ -12,23 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <libhal-linux/output_pin.hpp>
+#include <chrono>
+#include <iostream>
 #include <libhal-linux/steady_clock.hpp>
 #include <libhal-util/steady_clock.hpp>
-#include <libhal/steady_clock.hpp>
+#include <libhal/error.hpp>
+#include <unistd.h>
 
 void application()
 {
+  using namespace std::chrono_literals;
   using namespace hal::literals;
-  // TODO(libhal-target): Set the correct frequency and output pin driver
-  hal::gnu_linux::output_pin led("/dev/gpiochip0", 2);
-  auto clock = hal::gnu_linux::steady_clock<std::chrono::steady_clock>();
-
-  while (true) {
-    using namespace std::chrono_literals;
-    led.level(false);
-    hal::delay(clock, 200ms);
-    led.level(true);
-    hal::delay(clock, 200ms);
+  auto sc = hal::gnu_linux::steady_clock<std::chrono::steady_clock>();
+  std::cout << "Clock made!\n";
+  for (int i = 0; i < 10; i++) {
+    hal::delay(sc, 5s);
+    std::cout << "Delayed for a second\n";
   }
 }

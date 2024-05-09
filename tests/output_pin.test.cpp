@@ -16,7 +16,7 @@
 
 #include <boost/ut.hpp>
 
-namespace hal::linux {
+namespace hal::gnu_linux {
 void output_pin_test()
 {
   using namespace boost::ut;
@@ -28,4 +28,4 @@ void output_pin_test()
     // Verify
   };
 };
-}  // namespace hal::linux
+}  // namespace hal::gnu_linux

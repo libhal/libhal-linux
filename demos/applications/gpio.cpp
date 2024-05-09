@@ -12,23 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <iostream>
+#include <libhal-linux/input_pin.hpp>
 #include <libhal-linux/output_pin.hpp>
-#include <libhal-linux/steady_clock.hpp>
-#include <libhal-util/steady_clock.hpp>
-#include <libhal/steady_clock.hpp>
+#include <libhal/error.hpp>
+#include <unistd.h>
 
 void application()
 {
-  using namespace hal::literals;
-  // TODO(libhal-target): Set the correct frequency and output pin driver
-  hal::gnu_linux::output_pin led("/dev/gpiochip0", 2);
-  auto clock = hal::gnu_linux::steady_clock<std::chrono::steady_clock>();
-
+  auto output_gpio = hal::gnu_linux::output_pin("/dev/gpiochip0", 2);
+  auto input_gpio = hal::gnu_linux::input_pin("/dev/gpiochip0", 3);
+  std::cout << "blinking gpio 2 on gpiochip0\n";
+  bool state = output_gpio.level();
+  bool saved_state = false;
   while (true) {
-    using namespace std::chrono_literals;
-    led.level(false);
-    hal::delay(clock, 200ms);
-    led.level(true);
-    hal::delay(clock, 200ms);
+    output_gpio.level(state);
+    saved_state = output_gpio.level();
+    std::cout << "current state: " << saved_state << std::endl;
+    sleep(1);
+    state ^= 1;
+    if (!input_gpio.level()) {
+      std::cout << "quiting, bye bye\n";
+      break;
+    }
   }
 }

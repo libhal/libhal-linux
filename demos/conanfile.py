@@ -23,5 +23,6 @@ class demos(ConanFile):
 
     def requirements(self):
         bootstrap = self.python_requires["libhal-bootstrap"]
-        bootstrap.module.add_demo_requirements(self, is_platform=True)
+        # bootstrap.module.add_demo_requirements(self, is_platform=True)
+        # self.requires("libhal-bootstrap/latest")
         self.requires("libhal-linux/[^1.0.0 || latest]")

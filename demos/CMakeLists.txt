@@ -12,18 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.20)
 
-# Set project name to demos
-project(demos LANGUAGES CXX)
+project(linux_demos VERSION 0.0.1 LANGUAGES CXX)
 
-libhal_build_demos(
-    DEMOS
-    blinker
+# Generate compile commands for anyone using our libraries.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-    PACKAGES
-    libhal-linux
+# Always run this custom target by making it depend on ALL
+# add_custom_target(copy_compile_commands ALL
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#     ${CMAKE_BINARY_DIR}/compile_commands.json
+#     ${CMAKE_SOURCE_DIR}/compile_commands.json
+#     DEPENDS ${CMAKE_BINARY_DIR}/compile_commands.json)
 
-    LINK_LIBRARIES
-    libhal::linux
-)
+
+find_package(libhal-linux REQUIRED CONFIG)
+
+set(DEMOS gpio blinker i2c_test uart steady_clock_test)
+foreach(DEMO ${DEMOS})
+    message(STATUS "Generating Demo for \"${PROJECT_NAME}_${DEMO}")
+    add_executable(${PROJECT_NAME}_${DEMO} main.cpp applications/${DEMO}.cpp)
+    target_include_directories(${PROJECT_NAME}_${DEMO} PUBLIC .)
+    target_compile_features(${PROJECT_NAME}_${DEMO} PRIVATE cxx_std_23)
+    target_link_libraries(${PROJECT_NAME}_${DEMO} PRIVATE libhal::linux -static-libstdc++)
+    
+endforeach()

@@ -21,6 +21,9 @@ libhal_test_and_make_library(
 
   SOURCES
   src/output_pin.cpp
+  src/input_pin.cpp
+  src/i2c.cpp
+  src/serial.cpp
 
   TEST_SOURCES
   tests/output_pin.test.cpp

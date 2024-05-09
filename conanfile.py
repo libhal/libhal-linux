@@ -33,46 +33,22 @@ class libhal_linux_conan(ConanFile):
     python_requires = "libhal-bootstrap/[^1.0.0]"
     python_requires_extend = "libhal-bootstrap.library"
 
-    options = {
-        "platform": [
-            "profile1",
-            "profile2",
-            "ANY"
-        ],
-    }
-
-    default_options = {
-        "platform": "ANY",
-    }
-
-    @property
-    def _use_linker_script(self):
-        return (self.options.platform == "profile1" or
-                self.options.platform == "profile2")
-
-    def add_linker_scripts_to_link_flags(self):
-        platform = str(self.options.platform)
-        self.cpp_info.exelinkflags = [
-            "-L" + os.path.join(self.package_folder, "linker_scripts"),
-            "-T" + os.path.join("libhal-linux", platform + ".ld"),
-        ]
-
     def requirements(self):
         # Replace with appropriate processor library
-        self.requires("libhal-armcortex/[^3.0.2]")
+        self.requires("libhal/[^3.3.0]", transitive_headers=True)
+        self.requires("libhal-util/[^4.1.0]", transitive_headers=True)
+
 
     def package_info(self):
         self.cpp_info.set_property("cmake_target_name", "libhal::linux")
         self.cpp_info.libs = ["libhal-linux"]
 
-        if self.settings.os == "baremetal" and self._use_linker_script:
-            self.add_linker_scripts_to_link_flags()
-
-            self.buildenv_info.define("LIBHAL_PLATFORM",
-                                      str(self.options.platform))
-            self.buildenv_info.define("LIBHAL_PLATFORM_LIBRARY",
-                                      "linux")
 
     def package_id(self):
         if self.info.options.get_safe("platform"):
             del self.info.options.platform
+        
+        self.buildenv_info.define("LIBHAL_PLATFORM",
+                                      "linux")
+        self.buildenv_info.define("LIBHAL_PLATFORM_LIBRARY",
+                                      "linux")

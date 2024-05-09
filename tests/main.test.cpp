@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace hal::linux {
+namespace hal::gnu_linux {
 extern void output_pin_test();
-}  // namespace hal::linux
+}  // namespace hal::gnu_linux
 
 int main()
 {
-  hal::linux::output_pin_test();
+  hal::gnu_linux::output_pin_test();
 }
