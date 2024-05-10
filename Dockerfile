@@ -1,7 +1,7 @@
 FROM --platform=arm64 ubuntu:22.04
 
 RUN apt update && apt upgrade -y
-RUN apt install gcc g++ valgrind neofetch git wget python3-pip clang-format software-properties-common locales pkg-config automake autoconf autoconf-archive libtool m4 -y
+RUN apt install gcc g++ valgrind neofetch git wget python3-pip clang-format software-properties-common locales pkg-config automake autoconf autoconf-archive libtool m4 clangd-17 -y
 
 RUN wget https://apt.llvm.org/llvm.sh
 RUN chmod +x llvm.sh

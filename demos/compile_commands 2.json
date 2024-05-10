@@ -1,0 +1,62 @@
+[
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_gpio.dir/main.cpp.o -c /code/demos/main.cpp",
+  "file": "/code/demos/main.cpp",
+  "output": "CMakeFiles/linux_demos_gpio.dir/main.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_gpio.dir/applications/gpio.cpp.o -c /code/demos/applications/gpio.cpp",
+  "file": "/code/demos/applications/gpio.cpp",
+  "output": "CMakeFiles/linux_demos_gpio.dir/applications/gpio.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_blinker.dir/main.cpp.o -c /code/demos/main.cpp",
+  "file": "/code/demos/main.cpp",
+  "output": "CMakeFiles/linux_demos_blinker.dir/main.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_blinker.dir/applications/blinker.cpp.o -c /code/demos/applications/blinker.cpp",
+  "file": "/code/demos/applications/blinker.cpp",
+  "output": "CMakeFiles/linux_demos_blinker.dir/applications/blinker.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_i2c_test.dir/main.cpp.o -c /code/demos/main.cpp",
+  "file": "/code/demos/main.cpp",
+  "output": "CMakeFiles/linux_demos_i2c_test.dir/main.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_i2c_test.dir/applications/i2c_test.cpp.o -c /code/demos/applications/i2c_test.cpp",
+  "file": "/code/demos/applications/i2c_test.cpp",
+  "output": "CMakeFiles/linux_demos_i2c_test.dir/applications/i2c_test.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_uart.dir/main.cpp.o -c /code/demos/main.cpp",
+  "file": "/code/demos/main.cpp",
+  "output": "CMakeFiles/linux_demos_uart.dir/main.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_uart.dir/applications/uart.cpp.o -c /code/demos/applications/uart.cpp",
+  "file": "/code/demos/applications/uart.cpp",
+  "output": "CMakeFiles/linux_demos_uart.dir/applications/uart.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_steady_clock_test.dir/main.cpp.o -c /code/demos/main.cpp",
+  "file": "/code/demos/main.cpp",
+  "output": "CMakeFiles/linux_demos_steady_clock_test.dir/main.cpp.o"
+},
+{
+  "directory": "/code/demos/build/unspecified/Release",
+  "command": "/usr/bin/clang++-17  -I/code/demos/. -isystem /root/.conan2/p/b/libhaf431e523fb55f/p/include -isystem /root/.conan2/p/b/libhac2ef268c2495b/p/include -isystem /root/.conan2/p/libha6f1566c3082ef/p/include -isystem /root/.conan2/p/tl-fu31454aa876889/p/include -stdlib=libc++ -O3 -DNDEBUG -std=c++23 -o CMakeFiles/linux_demos_steady_clock_test.dir/applications/steady_clock_test.cpp.o -c /code/demos/applications/steady_clock_test.cpp",
+  "file": "/code/demos/applications/steady_clock_test.cpp",
+  "output": "CMakeFiles/linux_demos_steady_clock_test.dir/applications/steady_clock_test.cpp.o"
+}
+]
