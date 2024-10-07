@@ -1,11 +1,14 @@
-#include <array>
 #include <cstring>
+
 #include <fcntl.h>
-#include <libhal/i2c.hpp>
 #include <linux/i2c-dev.h>
 #include <linux/i2c.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+
+#include <array>
+
+#include <libhal/i2c.hpp>
 
 #include <libhal-linux/i2c.hpp>
 
@@ -57,57 +60,51 @@ void i2c::driver_transaction(
   } else {
     real_address = p_address;
   }
+
   // Enable 10 bit mode if set
   if (ioctl(m_fd, I2C_TENBIT, is_ten_bit) < 0) {
-
     throw hal::operation_not_supported(this);
   }
 
   // Set peripheral address
   if (ioctl(m_fd, I2C_SLAVE, real_address) < 0) {
-
     throw hal::no_such_device(real_address, this);
   }
 
   const bool is_reading = p_data_out.empty();
-  const bool write_then_read =
-    &p_data_out.data()[0] != nullptr && &p_data_in.data()[0] != nullptr;
+  const bool write_then_read = not p_data_out.empty() && not p_data_in.empty();
 
   if (write_then_read) {
     i2c_rdwr_ioctl_data data_queue;
-    std::array<i2c_msg, 2> msgs;
+    std::array<i2c_msg, 2> msgs{};
     // First, the message thats to be written
     msgs[0].addr = real_address;
-    msgs[0].buf = (__u8*)(&p_data_out.data()[0]);
+    msgs[0].buf = reinterpret_cast<__u8*>(p_data_out.data());
     msgs[0].flags = 0;
     msgs[0].len = p_data_out.size();
 
     // Next, the message thats to be read
     msgs[1].addr = real_address;
-    msgs[1].buf = (__u8*)(&p_data_in.data()[0]);
+    msgs[1].buf = reinterpret_cast<__u8*>(p_data_in.data());
     msgs[1].flags = I2C_M_RD;
     msgs[1].len = p_data_in.size();
 
     data_queue.nmsgs = 2;
-    data_queue.msgs = &msgs[0];
+    data_queue.msgs = msgs.data();
     if (ioctl(m_fd, I2C_RDWR, &data_queue) < 0) {
-
       throw hal::operation_not_permitted(this);
     }
     return;
   }
 
   if (is_reading) {
-    if (linux_read(m_fd, &p_data_in.data()[0], p_data_in.size()) == -1) {
-
+    if (linux_read(m_fd, p_data_in.data(), p_data_in.size()) == -1) {
       throw hal::operation_not_permitted(this);
     }
   } else {
-    if (linux_write(m_fd, &p_data_out.data()[0], p_data_out.size()) == -1) {
-
+    if (linux_write(m_fd, p_data_out.data(), p_data_out.size()) == -1) {
       throw hal::operation_not_permitted(this);
     }
   }
 }
-
 }  // namespace hal::gnu_linux

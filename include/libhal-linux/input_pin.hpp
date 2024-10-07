@@ -1,17 +1,13 @@
 #pragma once
 
-#include <fcntl.h>
+#include <linux/gpio.h>
+
 #include <libhal/error.hpp>
 #include <libhal/input_pin.hpp>
-#include <linux/gpio.h>
-#include <string>
-#include <sys/ioctl.h>
-#include <unistd.h>
 
 namespace {
 typedef struct gpio_v2_line_request gpio_line_request;
 typedef struct gpio_v2_line_values gpio_values;
-
 }  // namespace
 
 namespace hal::gnu_linux {

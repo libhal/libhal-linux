@@ -26,15 +26,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #     ${CMAKE_SOURCE_DIR}/compile_commands.json
 #     DEPENDS ${CMAKE_BINARY_DIR}/compile_commands.json)
 
-
 find_package(libhal-linux REQUIRED CONFIG)
 
-set(DEMOS gpio blinker i2c_test uart steady_clock_test)
+set(DEMOS gpio blinker i2c uart steady_clock_test)
 foreach(DEMO ${DEMOS})
     message(STATUS "Generating Demo for \"${PROJECT_NAME}_${DEMO}")
     add_executable(${PROJECT_NAME}_${DEMO} main.cpp applications/${DEMO}.cpp)
     target_include_directories(${PROJECT_NAME}_${DEMO} PUBLIC .)
     target_compile_features(${PROJECT_NAME}_${DEMO} PRIVATE cxx_std_23)
     target_link_libraries(${PROJECT_NAME}_${DEMO} PRIVATE libhal::linux -static-libstdc++)
-    
+
 endforeach()

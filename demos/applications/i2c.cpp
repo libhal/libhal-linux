@@ -38,7 +38,7 @@ void application()
   const auto addr = 0x68;
   const auto wake_sensor = std::array<hal::byte, 2>{ 0x6B, 0 };
   hal::write(bus, addr, wake_sensor);
-  const auto set_scale = std::array<hal::byte, 2>{ 0xC1, 1 };
+
   while (true) {
     auto read_buffer = std::array<hal::byte, 6>{};
     auto write_op = std::array<hal::byte, 1>{ 0x3B };

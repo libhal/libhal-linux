@@ -1,16 +1,16 @@
-#include <libhal-linux/errors.hpp>
-#include <libhal-linux/serial.hpp>
 
-// Internal includes TODO: move to source
 #include <cerrno>
 #include <cstring>
-#include <fcntl.h>
 
-#include <string>
+#include <fcntl.h>
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
 
+#include <string>
+
+#include <libhal-linux/errors.hpp>
+#include <libhal-linux/serial.hpp>
 #include <libhal-util/math.hpp>
 #include <libhal/error.hpp>
 
@@ -157,7 +157,7 @@ void serial::driver_configure(const settings& p_settings)
       internal_baud = B2000000;
       break;
     default:
-      throw hal::argument_out_of_domain(this);
+      throw hal::operation_not_supported(this);
   }
 
   control_flags |= internal_baud;
@@ -204,5 +204,4 @@ void serial::driver_flush()
   }
   tcflush(m_fd, TCIFLUSH);  // Flushes both TX and RX
 }
-
 }  // namespace hal::gnu_linux
