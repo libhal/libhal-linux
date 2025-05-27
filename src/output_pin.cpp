@@ -1,4 +1,4 @@
-// Copyright 2024 Khalil Estell
+// Copyright 2024 - 2025 Khalil Estell and the libhal contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 
 #include <libhal-linux/errors.hpp>
 #include <libhal-linux/output_pin.hpp>
+#include <libhal/error.hpp>
 
 namespace hal::gnu_linux {
 
 output_pin::output_pin(const std::string& p_chip_name,
                        const std::uint16_t p_pin)
-
 {
   m_chip_fd = open(p_chip_name.c_str(), O_RDONLY);
   if (m_chip_fd < 0) {
@@ -66,7 +66,7 @@ void output_pin::driver_configure(const settings& p_settings)
             GPIO_V2_LINE_SET_CONFIG_IOCTL,
             &m_line_request.config) < 0) {
     perror("Failed to configured");
-    throw hal::operation_not_permitted(this);
+    throw hal::operation_not_supported(this);
   }
 }
 

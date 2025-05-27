@@ -32,6 +32,7 @@ bool input_pin::driver_level()
     perror("driver_level input read");
     throw hal::io_error(this);
   }
+
   return static_cast<bool>(m_values.bits & m_values.mask);
 }
 

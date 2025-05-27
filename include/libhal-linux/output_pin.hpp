@@ -1,23 +1,26 @@
+// Copyright 2024 - 2025 Khalil Estell and the libhal contributors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 #pragma once
 
-#include <fcntl.h>
+#include <linux/gpio.h>
+
 #include <libhal/error.hpp>
 #include <libhal/output_pin.hpp>
 #include <libhal/units.hpp>
-#include <linux/gpio.h>
-#include <string>
-#include <sys/ioctl.h>
-#include <unistd.h>
-
-namespace {
-typedef struct gpio_v2_line_request gpio_line_request;
-typedef struct gpio_v2_line_values gpio_values;
-typedef struct gpio_v2_line_config gpio_config;
-
-}  // namespace
 
 namespace hal::gnu_linux {
-
 /**
  * @brief Output pin for the linux kernel. Wraps libgpiod 2.1 at the earlist.
  * Assumes a GPIO driver exists and is properly written for the specific
@@ -27,10 +30,11 @@ class output_pin : public hal::output_pin
 {
 public:
   /**
-   * @brief Constructor. Takes a *full path* to the GPIO character device and a
-   * numeber that is known to said device.
-   * @param p_chip_name Full path to GPIO character device.
-   * @param p_pin Pin number for said device
+   * @brief Takes a *full path* to the GPIO character device and a number that
+   * is known to said device.
+   *
+   * @param p_chip_name - Full path to GPIO character device.
+   * @param p_pin - Pin number for said device
    *
    * @throws std::invalid_argument if an invalid chip path was given, an invalid
    * pin number was given, or if a request to said line failed.
@@ -45,7 +49,7 @@ private:
   bool driver_level() override;
 
   int m_chip_fd = -1;
-  gpio_line_request m_line_request;
-  gpio_values m_values;
+  gpio_v2_line_request m_line_request;
+  gpio_v2_line_values m_values;
 };
 }  // namespace hal::gnu_linux
