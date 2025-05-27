@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2024 Khalil Estell
+# Copyright 2024 - 2025 Khalil Estell and the libhal contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ class libhal_linux_conan(ConanFile):
     topics = ("microcontroller", "linux",)
     settings = "compiler", "build_type", "os", "arch"
 
-    python_requires = "libhal-bootstrap/[^1.0.0]"
+    python_requires = "libhal-bootstrap/[^4.2.1]"
     python_requires_extend = "libhal-bootstrap.library"
 
     def requirements(self):
@@ -38,17 +38,15 @@ class libhal_linux_conan(ConanFile):
         self.requires("libhal/[^3.3.0]", transitive_headers=True)
         self.requires("libhal-util/[^4.1.0]", transitive_headers=True)
 
-
     def package_info(self):
         self.cpp_info.set_property("cmake_target_name", "libhal::linux")
         self.cpp_info.libs = ["libhal-linux"]
 
-
     def package_id(self):
         if self.info.options.get_safe("platform"):
             del self.info.options.platform
-        
+
         self.buildenv_info.define("LIBHAL_PLATFORM",
-                                      "linux")
+                                  "linux")
         self.buildenv_info.define("LIBHAL_PLATFORM_LIBRARY",
-                                      "linux")
+                                  "linux")
