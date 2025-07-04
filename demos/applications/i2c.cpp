@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <unistd.h>
+
 #include <array>
 #include <iostream>
+
 #include <libhal-linux/i2c.hpp>
 #include <libhal-util/i2c.hpp>
 #include <libhal/error.hpp>
-#include <unistd.h>
 
 double rad_to_deg(double rad)
 {

@@ -8,9 +8,8 @@
 
 #include <array>
 
-#include <libhal/i2c.hpp>
-
 #include <libhal-linux/i2c.hpp>
+#include <libhal/i2c.hpp>
 
 namespace {
 inline auto linux_read(int fd, void* buf, size_t nbytes)
