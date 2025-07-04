@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <unistd.h>
+
 #include <chrono>
 #include <iostream>
+
 #include <libhal-linux/steady_clock.hpp>
 #include <libhal-util/steady_clock.hpp>
 #include <libhal/error.hpp>
-#include <unistd.h>
 
 void application()
 {

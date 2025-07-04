@@ -30,22 +30,21 @@ class libhal_linux_conan(ConanFile):
     topics = ("microcontroller", "linux",)
     settings = "compiler", "build_type", "os", "arch"
 
-    python_requires = "libhal-bootstrap/[^4.2.1]"
+    python_requires = "libhal-bootstrap/[>=4.4.0 <5]"
     python_requires_extend = "libhal-bootstrap.library"
 
     def requirements(self):
-        # Replace with appropriate processor library
-        self.requires("libhal/[^3.3.0]", transitive_headers=True)
-        self.requires("libhal-util/[^4.1.0]", transitive_headers=True)
+        self.requires("libhal/[^4.12.1]", transitive_headers=True)
+        self.requires("libhal-util/[^5.5.0]", transitive_headers=True)
 
     def package_info(self):
         self.cpp_info.set_property("cmake_target_name", "libhal::linux")
         self.cpp_info.libs = ["libhal-linux"]
 
     def package_id(self):
+        self.info.python_requires.major_mode()
         if self.info.options.get_safe("platform"):
             del self.info.options.platform
-
         self.buildenv_info.define("LIBHAL_PLATFORM",
                                   "linux")
         self.buildenv_info.define("LIBHAL_PLATFORM_LIBRARY",

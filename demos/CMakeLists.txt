@@ -19,13 +19,6 @@ project(linux_demos VERSION 0.0.1 LANGUAGES CXX)
 # Generate compile commands for anyone using our libraries.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Always run this custom target by making it depend on ALL
-# add_custom_target(copy_compile_commands ALL
-#     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#     ${CMAKE_BINARY_DIR}/compile_commands.json
-#     ${CMAKE_SOURCE_DIR}/compile_commands.json
-#     DEPENDS ${CMAKE_BINARY_DIR}/compile_commands.json)
-
 find_package(libhal-linux REQUIRED CONFIG)
 
 set(DEMOS gpio blinker i2c uart steady_clock_test)
